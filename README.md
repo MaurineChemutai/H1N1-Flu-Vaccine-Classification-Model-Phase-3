@@ -2,7 +2,7 @@
 
 ---
 <p align="center">
-  <img src="H1N1_vaccine.jfif" width="100%">
+  <img src="images/H1N1_vaccine.jfif" width="100%">
 </p>
 
 ## 📌 1. Project Overview
