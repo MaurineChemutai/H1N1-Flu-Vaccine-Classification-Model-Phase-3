@@ -87,7 +87,7 @@ Key observations:
 
 ### 📉 Model Comparison
 <p align="center">
-  <img src="images/model_performance.png" width="600">
+  <img src="images/Model_Performance.png" width="600">
 </p>
 👉 Logistic Regression performed best overall.
 
