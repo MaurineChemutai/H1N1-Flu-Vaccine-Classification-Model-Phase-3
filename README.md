@@ -1,61 +1,165 @@
-# H1N1 Vaccination Prediction Project
+# 🦠 H1N1 Vaccination Prediction Project
 
-## 1. Project Overview
-This project predicts whether individuals received the H1N1 flu vaccine using the **National 2009 H1N1 Flu Survey** data.  
-The goal is to build a **binary classification model** that estimates the likelihood of vaccination based on demographics, health behaviors, and public perceptions.
+---
 
-## 2. Business Understanding
-Vaccination is a key public health tool, but uptake is often affected by **hesitancy, misinformation, and socioeconomic barriers**.
+## 📌 1. Project Overview
+This project predicts whether individuals received the H1N1 flu vaccine using data from the **National 2009 H1N1 Flu Survey**.
 
-- **Problem Statement:** Identify people likely or unlikely to get the H1N1 vaccine to improve planning and delivery of vaccination programs.  
-- **Stakeholders:** Public health organizations, government policymakers, healthcare providers.  
-- **Key Question:** Which factors (e.g., doctor recommendations, perceived risk, demographics) best predict vaccine uptake?
+The goal is to build a **binary classification model** that estimates the probability of vaccination based on:
+- Demographics  
+- Health behaviors  
+- Public perceptions  
 
-## 3. Data Description
-- **Records:** 26,707  
-- **Features:** 38  
+---
 
-**Target Variable:** `h1n1_vaccine` (0 = No, 1 = Yes)  
+## 🎯 2. Business Understanding
 
-**Feature Types:**  
-- **Behavioral:** Hand washing, face mask usage, social distancing  
+Vaccination is an important public health tool, but many people do not get vaccinated due to **hesitancy, misinformation, and access issues**.
+
+- **Problem:** Identify people who are likely or unlikely to get vaccinated  
+- **Stakeholders:** Public health organizations, policymakers, healthcare providers  
+- **Key Question:** What factors most influence vaccine uptake?
+
+---
+
+## 📊 3. Data Description
+
+- **Number of Records:** 26,707  
+- **Number of Features:** 38  
+
+**Target Variable:**  
+- `h1n1_vaccine`  
+  - 0 = Not Vaccinated  
+  - 1 = Vaccinated  
+
+**Feature Categories:**
+- **Behavioral:** Mask use, hand washing, social distancing  
 - **Perceptions:** Vaccine effectiveness, perceived risk  
-- **Demographics:** Age, education, race, sex, income  
+- **Demographics:** Age, education, race, income  
 
-**Data Challenges:**  
-Some features had high missing values (e.g., `health_insurance` ~46%, `employment_industry` ~50%), which were handled using imputation.
+**Challenges:**
+- Missing values in some features (e.g., health insurance, employment)
+- Handled using imputation
 
-## 4. Methodology
-1. **Data Cleaning:** Imputed missing values and encoded categorical variables.  
-2. **Exploratory Data Analysis (EDA):** Studied correlations between behaviors and vaccination status.  
-3. **Class Imbalance:** Applied **SMOTE** to balance vaccinated vs. non-vaccinated classes.  
-4. **Modeling:** Trained and compared:  
+---
+
+## 🔍 4. Exploratory Data Analysis (EDA)
+
+EDA was performed to understand patterns in the data and relationships with vaccination.
+
+### 📈 EDA Visualization
+![EDA Visualization](images/eda_plot.png)
+<p align="center">
+  <img src="images/feature_importance.png" width="600">
+</p>
+
+Key observations:
+- People who believe the vaccine is effective are more likely to take it  
+- Higher perceived risk increases vaccination likelihood  
+- Doctor recommendation strongly influences decisions  
+
+---
+
+## ⚙️ 5. Methodology
+
+1. **Data Cleaning**
+   - Handled missing values
+   - Encoded categorical variables  
+
+2. **Handling Imbalance**
+   - Applied **SMOTE** to balance classes  
+
+3. **Modeling**
    - Logistic Regression  
-   - Decision Tree Classifier  
-5. **Hyperparameter Tuning:** Used **GridSearchCV** to optimize the Decision Tree for higher AUC.
+   - Decision Tree  
 
-## 5. Key Results
-- **Base Decision Tree:** AUC = 0.649  
-- **Tuned Decision Tree:** AUC = 0.804  
-- **Logistic Regression (tuned):** AUC = 0.821  
+4. **Hyperparameter Tuning**
+   - Used **GridSearchCV** to improve performance  
 
-Tuned models outperform the baseline and show strong ability to separate vaccinated from non-vaccinated individuals. Logistic Regression slightly outperforms the Decision Tree.
+---
 
-## 6. Conclusions & Recommendations
+## 📊 6. Model Performance
 
-**Conclusion:**  
-- Hyperparameter tuning improved the Decision Tree by **over 15% in AUC**, making it much better at identifying people likely to vaccinate.  
-- Logistic Regression achieved the highest AUC (0.821), confirming its strong predictive performance.  
-- Top predictors include **doctor recommendations** and **perceived vaccine effectiveness**, showing these factors strongly influence vaccination decisions.
+| Model | AUC Score |
+|------|----------|
+| Decision Tree (Base) | 0.649 |
+| Decision Tree (Tuned) | 0.804 |
+| Logistic Regression (Tuned) | **0.821** |
 
-**Recommendations (based on model results):**  
-1. **Leverage Top Predictors:** Use insights from the models to guide outreach. Focus on doctor recommendations and perceptions of vaccine effectiveness to increase uptake.  
-2. **Target Low-Probability Groups:** The models identify individuals with low likelihood of vaccination. Public health campaigns should prioritize these groups with tailored messaging.  
-3. **Use Tuned Models for Planning:** Deploy the tuned Decision Tree (AUC = 0.804) and Logistic Regression (AUC = 0.821) to allocate vaccines and educational resources efficiently.  
-4. **Monitor and Update:** Retrain models periodically with new survey data to maintain accuracy as public perceptions and behaviors change.  
-5. **Improve Data Quality:** Reduce missing values in critical variables like health insurance and employment information to strengthen model predictions in the future.
+### 📉 Model Comparison
+![Model Performance](images/model_performance.png)
 
-## 7. How to Run the Notebook
-- **Prerequisites:** Python 3.x, Jupyter Notebook  
-- **Libraries:** pandas, numpy, matplotlib, seaborn, scikit-learn, imblearn  
-- **Execution:** Open `index.ipynb` and run all cells to reproduce data cleaning, modeling, and evaluation steps.
+👉 Logistic Regression performed best overall.
+
+---
+
+## ⭐ 7. Key Insights (Top Predictors)
+
+The most important factors influencing vaccine uptake:
+
+- Doctor recommendation (strongest predictor)
+- Belief in vaccine effectiveness
+- Being a health worker
+- Age (older individuals more likely)
+- Perceived risk of H1N1  
+
+### 📊 Feature Importance Visualization
+![Feature Importance](images/feature_importance.png)
+
+---
+
+## ✅ 8. Conclusions
+
+- Model performance improved significantly after tuning  
+- Logistic Regression achieved the highest AUC (0.821)  
+- Behavioral and perception-based features are strong predictors  
+
+---
+
+## 💡 9. Recommendations
+
+Based on the model results and feature importance analysis, the following recommendations are made:
+
+1. **Strengthen Doctor Recommendations**  
+   The model shows that *doctor recommendation* is the strongest predictor of vaccination. Public health programs should encourage healthcare providers to actively recommend the H1N1 vaccine to patients.
+
+2. **Improve Public Confidence in the Vaccine**  
+   Belief in vaccine effectiveness is one of the top predictors. Awareness campaigns should focus on educating people about the safety and effectiveness of the vaccine to build trust.
+
+3. **Target High-Risk and Older Populations**  
+   Older age groups and individuals who perceive higher risk are more likely to vaccinate. Campaigns should prioritize these groups while also educating younger populations who may underestimate their risk.
+
+4. **Focus on Low-Uptake Groups Identified by the Model**  
+   The model can identify individuals with a low probability of vaccination. These groups should be targeted with tailored messaging and outreach programs.
+
+5. **Use the Model for Decision-Making**  
+   The tuned model (Logistic Regression AUC = 0.821) show strong predictive performance. These model can be used to support planning, resource allocation, and targeted interventions.
+
+6. **Continuously Update the Model**  
+   Public behavior and perceptions change over time. The model should be retrained regularly with new data to maintain accuracy and relevance.
+
+
+---
+
+## ▶️ 10. How to Run the Project
+
+### Requirements:
+- Python 3.x  
+- Jupyter Notebook  
+
+### Libraries:
+- pandas  
+- numpy  
+- matplotlib  
+- seaborn  
+- scikit-learn  
+- imblearn  
+
+### Steps:
+1. Open `index.ipynb`  
+2. Run all cells  
+3. Reproduce results and visualizations  
+
+---
+
+## 📁 Project Structure
