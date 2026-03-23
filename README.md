@@ -1,9 +1,9 @@
 # 🦠 H1N1 Vaccination Prediction Project
 
+---
 <p align="center">
   <img src="H1N1_vaccine.jfif" width="100%">
 </p>
----
 
 ## 📌 1. Project Overview
 This project predicts whether individuals received the H1N1 flu vaccine using data from the **National 2009 H1N1 Flu Survey**.
