@@ -47,8 +47,11 @@ Vaccination is an important public health tool, but many people do not get vacci
 
 EDA was performed to understand patterns in the data and relationships with vaccination.
 
-### 📈 Example Visualization
-![EDA Example](images/eda_plot.png)
+### 📈 EDA Visualization
+![EDA Visualization](images/eda_plot.png)
+<p align="center">
+  <img src="images/feature_importance.png" width="600">
+</p>
 
 Key observations:
 - People who believe the vaccine is effective are more likely to take it  
@@ -115,11 +118,26 @@ The most important factors influencing vaccine uptake:
 
 ## 💡 9. Recommendations
 
-1. Focus on **doctor recommendations** to increase vaccination rates  
-2. Target people with **low perceived risk or low trust** in vaccines  
-3. Use model predictions to guide **public health campaigns**  
-4. Continuously update the model with new data  
-5. Improve data quality for better predictions  
+Based on the model results and feature importance analysis, the following recommendations are made:
+
+1. **Strengthen Doctor Recommendations**  
+   The model shows that *doctor recommendation* is the strongest predictor of vaccination. Public health programs should encourage healthcare providers to actively recommend the H1N1 vaccine to patients.
+
+2. **Improve Public Confidence in the Vaccine**  
+   Belief in vaccine effectiveness is one of the top predictors. Awareness campaigns should focus on educating people about the safety and effectiveness of the vaccine to build trust.
+
+3. **Target High-Risk and Older Populations**  
+   Older age groups and individuals who perceive higher risk are more likely to vaccinate. Campaigns should prioritize these groups while also educating younger populations who may underestimate their risk.
+
+4. **Focus on Low-Uptake Groups Identified by the Model**  
+   The model can identify individuals with a low probability of vaccination. These groups should be targeted with tailored messaging and outreach programs.
+
+5. **Use the Model for Decision-Making**  
+   The tuned model (Logistic Regression AUC = 0.821) show strong predictive performance. These model can be used to support planning, resource allocation, and targeted interventions.
+
+6. **Continuously Update the Model**  
+   Public behavior and perceptions change over time. The model should be retrained regularly with new data to maintain accuracy and relevance.
+
 
 ---
 
